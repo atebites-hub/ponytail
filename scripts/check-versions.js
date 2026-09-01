@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Version-consistency guard. Ponytail declares its version in seven files across
-// five host ecosystems, and every release bumps all of them by hand.
+// Version-consistency guard. Ponytail declares its version in several files
+// across host ecosystems, and every release bumps all of them by hand.
 //
 // tests/gemini-extension.test.js already checks the four plugin manifests agree
 // with each other, but that can't catch the failure mode that shipped in v4.8.0:
@@ -21,11 +21,13 @@ const PINNED_SEMVER = /^\d+\.\d+\.\d+$/;
 const VERSION_FILES = [
   '.claude-plugin/plugin.json',  // Claude Code plugin — what users install
   '.codex-plugin/plugin.json',   // Codex plugin
+  '.cursor-plugin/plugin.json',  // Cursor IDE + CLI plugin
   '.devin-plugin/plugin.json',   // Devin CLI plugin
   '.github/plugin/plugin.json',  // Copilot plugin
   '.qoder-plugin/plugin.json',   // Qoder plugin
   'gemini-extension.json',       // Gemini CLI extension
   'package.json',                // pi-package / repo root
+  'plugin.json',                 // Agent Plugins / Grok Build manifest
   'ponytail-mcp/package.json',   // MCP server (private, internal-only)
 ];
 
