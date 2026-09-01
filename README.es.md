@@ -131,6 +131,26 @@ Abre `/plugins`, selecciona el marketplace de Ponytail e instala Ponytail. Luego
 
 Esta misma instalación cubre también la app de escritorio de Codex: reinicia la app después de instalar y detecta el plugin automáticamente.
 
+### Cursor
+
+Cursor IDE y Cursor CLI (`agent`) cargan ponytail como plugin: reglas permanentes, los seis comandos `/ponytail*`, skills y un MCP opcional. No copies `.cursor/rules/ponytail.mdc` a otros proyectos; instala el plugin.
+
+```bash
+git clone https://github.com/DietrichGebert/ponytail
+mkdir -p ~/.cursor/plugins/local
+ln -s "$PWD/ponytail" ~/.cursor/plugins/local/ponytail
+```
+
+Reinicia Cursor o **Developer: Reload Window**. En **Customize** confirma ponytail.
+
+Cursor CLI, sin IDE:
+
+```bash
+agent --plugin-dir /path/to/ponytail
+```
+
+Marketplace de equipo: Dashboard → Plugins → Import from Repo → este repositorio (incluye `.cursor-plugin/marketplace.json`). MCP opcional: `npm install --prefix ponytail-mcp`, luego `agent mcp enable ponytail`. Desinstalar: quita `~/.cursor/plugins/local/ponytail` (IDE) o deja de pasar `--plugin-dir` (CLI).
+
 ### GitHub Copilot CLI
 
 ```bash
@@ -237,7 +257,7 @@ Activo en cada sesión, con un puñado de comandos (ver [Comandos](#comandos)). 
 
 Configura el nivel para cada nueva sesión con la variable de entorno `PONYTAIL_DEFAULT_MODE` (`lite`/`full`/`ultra`/`off`), o con un campo `defaultMode` en `~/.config/ponytail/config.json` (`%APPDATA%\ponytail\config.json` en Windows). El default es `full`.
 
-Cursor, Windsurf, Cline, GitHub Copilot (editor), Aider, Kiro: copia el archivo de reglas correspondiente de este repo ([`.cursor/rules/`](.cursor/rules/), [`.windsurf/rules/`](.windsurf/rules/), [`.clinerules/`](.clinerules/), [`.github/copilot-instructions.md`](.github/copilot-instructions.md), [`AGENTS.md`](AGENTS.md), [`.kiro/steering/`](.kiro/steering/)).
+Windsurf, Cline, GitHub Copilot (editor), Aider, Kiro: copia el archivo de reglas correspondiente de este repo ([`.windsurf/rules/`](.windsurf/rules/), [`.clinerules/`](.clinerules/), [`.github/copilot-instructions.md`](.github/copilot-instructions.md), [`AGENTS.md`](AGENTS.md), [`.kiro/steering/`](.kiro/steering/)). Un checkout de este repo sigue aplicando [`.cursor/rules/ponytail.mdc`](.cursor/rules/ponytail.mdc) como regla de proyecto; en otros proyectos de Cursor usa el plugin de arriba.
 
 Kiro: copia `.kiro/steering/ponytail.md` a `~/.kiro/steering/` (global) o `.kiro/steering/` en tu proyecto.
 
@@ -257,7 +277,7 @@ Qué archivos corresponden a qué agente: [Portabilidad de agentes](docs/agent-p
 | `/ponytail-debt` | Recolecta los atajos marcados con `ponytail:` que dejaste pendientes en un registro, para que "después" no se convierta en "nunca". |
 | `/ponytail-help` | Referencia rápida de los comandos anteriores. |
 
-Los comandos requieren un host compatible con skills (Claude Code, Codex, Devin CLI, OpenCode, Gemini, pi, Swival). En Codex son skills; se invocan con `@` (`@ponytail-review`). Los adaptadores de solo instrucciones (Cursor, Windsurf, Cline, Copilot, Kiro, Antigravity) cargan el ruleset permanente sin los comandos.
+Los comandos requieren un host compatible con skills (Claude Code, Codex, Cursor, Devin CLI, OpenCode, Gemini, pi, Swival). En Codex son skills; se invocan con `@` (`@ponytail-review`). Los adaptadores de solo instrucciones (Windsurf, Cline, Copilot, Kiro, Antigravity) cargan el ruleset permanente sin los comandos.
 
 ## Desarrollo
 

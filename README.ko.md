@@ -135,6 +135,26 @@ codex
 
 이 설치 한 번이면 Codex 데스크톱 앱도 같이 잡힌다. 설치 후 앱을 다시 켜면 플러그인을 알아챈다.
 
+### Cursor
+
+Cursor IDE와 Cursor CLI(`agent`)는 ponytail을 플러그인으로 로드한다. 늘 켜진 규칙, `/ponytail*` 명령 여섯 개, 스킬, 선택적 MCP. 다른 프로젝트에 `.cursor/rules/ponytail.mdc`를 복사하지 말고 플러그인을 설치한다.
+
+```bash
+git clone https://github.com/DietrichGebert/ponytail
+mkdir -p ~/.cursor/plugins/local
+ln -s "$PWD/ponytail" ~/.cursor/plugins/local/ponytail
+```
+
+Cursor를 재시작하거나 **Developer: Reload Window**. **Customize**에서 ponytail을 확인한다.
+
+IDE 없이 CLI만:
+
+```bash
+agent --plugin-dir /path/to/ponytail
+```
+
+팀 마켓플레이스: Dashboard → Plugins → Import from Repo → 이 저장소(`.cursor-plugin/marketplace.json`). 선택 MCP: `npm install --prefix ponytail-mcp` 다음 `agent mcp enable ponytail`. 제거: IDE는 `~/.cursor/plugins/local/ponytail` 삭제, CLI는 `--plugin-dir`를 빼면 된다.
+
 ### GitHub Copilot CLI
 
 ```bash
@@ -256,7 +276,7 @@ enabled = ["ponytail"]
 
 새 세션마다 적용할 레벨은 `PONYTAIL_DEFAULT_MODE` 환경 변수(`lite`/`full`/`ultra`/`off`)로, 또는 `~/.config/ponytail/config.json`의 `defaultMode` 필드(Windows에선 `%APPDATA%\ponytail\config.json`)로 정한다. 기본값은 `full`이다.
 
-Cursor, Windsurf, Cline, GitHub Copilot(에디터), Aider, Kiro, Zed, CodeWhale: 이 저장소에서 맞는 규칙 파일을 복사하면 된다([`.cursor/rules/`](.cursor/rules/), [`.windsurf/rules/`](.windsurf/rules/), [`.clinerules/`](.clinerules/), [`.github/copilot-instructions.md`](.github/copilot-instructions.md), [`AGENTS.md`](AGENTS.md), [`.kiro/steering/`](.kiro/steering/)).
+Windsurf, Cline, GitHub Copilot(에디터), Aider, Kiro, Zed, CodeWhale: 이 저장소에서 맞는 규칙 파일을 복사하면 된다([`.windsurf/rules/`](.windsurf/rules/), [`.clinerules/`](.clinerules/), [`.github/copilot-instructions.md`](.github/copilot-instructions.md), [`AGENTS.md`](AGENTS.md), [`.kiro/steering/`](.kiro/steering/)). 이 저장소를 체크아웃해 작업하면 [`.cursor/rules/ponytail.mdc`](.cursor/rules/ponytail.mdc)가 프로젝트 규칙으로 남는다. 다른 Cursor 프로젝트는 위의 플러그인을 쓴다.
 
 Kiro: `.kiro/steering/ponytail.md`를 `~/.kiro/steering/`(전역)이나 프로젝트의 `.kiro/steering/`에 복사한다.
 
@@ -277,7 +297,7 @@ Codex 확장을 쓰는 VS Code는 이 저장소가 함께 싣는 `AGENTS.md`를 
 | `/ponytail-gain` | 벤치마크로 잰 효과 스코어보드(코드 절감, 비용 절감, 속도 향상)를 보여 준다. |
 | `/ponytail-help` | 위 명령들의 빠른 참조. |
 
-명령들은 스킬을 지원하는 호스트가 있어야 돈다(Claude Code, Codex, Devin CLI, OpenCode, Gemini, pi, Swival). Codex에선 스킬이라 `@`로 부른다(`@ponytail-review`). 지시문 전용 어댑터(Cursor, Windsurf, Cline, Copilot, Kiro, Antigravity)는 명령 없이 늘 켜진 룰셋만 불러온다.
+명령들은 스킬을 지원하는 호스트가 있어야 돈다(Claude Code, Codex, Cursor, Devin CLI, OpenCode, Gemini, pi, Swival). Codex에선 스킬이라 `@`로 부른다(`@ponytail-review`). 지시문 전용 어댑터(Windsurf, Cline, Copilot, Kiro, Antigravity)는 명령 없이 늘 켜진 룰셋만 불러온다.
 
 ## Development
 
