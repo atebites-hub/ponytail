@@ -362,6 +362,8 @@ Commands need a skill-capable host (Claude Code, Codex, Cursor, Devin CLI, OpenC
 
 ## Development
 
+This fork tracks [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail). Remotes and sync: [UPSTREAM.md](UPSTREAM.md).
+
 When changing the compact rule text, keep the agent copies aligned:
 
 ```bash
