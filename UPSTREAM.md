@@ -25,7 +25,7 @@ Do not `git push` to `upstream`.
 
 - **Upstream:** https://github.com/DietrichGebert/ponytail
 - **Parent:** [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)
-- **Last synced upstream tip:** <!-- upstream-tip-begin -->`974d940a1c5344210874150b98ff0d2c861fab6a` (`974d940`, `docs: put daily, weekly and monthly Trendshift badges in one row (#803)`)<!-- upstream-tip-end -->
+- **Last synced upstream tip:** <!-- upstream-tip-begin -->`356918eba965ee1eac64bd3a7f0dd02108350de5` (`356918e`, `docs: rename the Retriever logo files so GitHub serves the new version`)<!-- upstream-tip-end -->
 
 The weekday sync workflow rewrites only the `upstream-tip-begin/end` span when it opens a clean sync PR.
 
