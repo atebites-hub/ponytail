@@ -15,7 +15,11 @@ to load in a given agent.
 | pi | `pi-extension/`, `skills/`, `hooks/` | Package extension: injects the ruleset each turn through the shared instruction builder and registers the `/ponytail` commands. |
 | Hermes Agent | `plugin.yaml`, `__init__.py`, `skills/` | Native Hermes plugin: injects active mode through `pre_llm_call`, rewrites gateway `/ponytail-*` skill commands into agent prompts, registers `/ponytail` mode switching, and exposes bundled skills as `ponytail:<skill>`. |
 | Gemini CLI | `gemini-extension.json`, `AGENTS.md`, `commands/`, `skills/` | Extension manifest points `contextFileName` at `AGENTS.md` for always-on rules, and reuses the existing `commands/*.toml` and `skills/`, which Gemini CLI auto-discovers. The Claude/Codex hook map is not placed at Gemini's auto-discovered `hooks/hooks.json` path. |
+<<<<<<< HEAD
 | Cursor | `.cursor-plugin/plugin.json`, `.cursor-plugin/marketplace.json`, `.cursor-plugin/commands/*.md`, `.cursor/rules/ponytail.mdc`, `skills/`, `mcp.json` | Full plugin for Cursor IDE and Cursor CLI (`ln -s … ~/.cursor/plugins/local/ponytail` or `agent --plugin-dir`). Always-on rules, `/ponytail*` commands, skills, optional MCP. No Cursor lifecycle hooks (Claude/Codex events are not Cursor's; `hooks/hooks.json` is Gemini auto-load). Checkout of this repo still applies `.cursor/rules/ponytail.mdc` as a project rule. |
+=======
+| Cursor | `hooks/cursor-hooks.json`, `scripts/cursor-hooks.js`, `hooks/`, `.cursor/rules/ponytail.mdc` | Native hooks: `node scripts/cursor-hooks.js install` merges `sessionStart` (default-level ruleset via `additional_context`) and `beforeSubmitPrompt` (`/ponytail` level tracking, new-level ruleset via `additional_context`) into `~/.cursor/hooks.json`, or `.cursor/hooks.json` with `--project`, keeping unrelated hooks. No subagent injection (Cursor's `subagentStart` takes only `permission`/`user_message`) and no `sessionStart` in cloud agents. `.cursor/rules/ponytail.mdc` stays the instruction-only alternative; while that rule is in a workspace the hooks inject only a notice. Contract and verification record: [cursor-hooks.md](cursor-hooks.md). |
+>>>>>>> upstream/main
 | Windsurf | `.windsurf/rules/ponytail.md` | Project rule. |
 | Cline | `.clinerules/ponytail.md` | Project rule. |
 | GitHub Copilot | `.github/copilot-instructions.md` | Repository instruction file. |
