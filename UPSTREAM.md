@@ -27,8 +27,6 @@ Do not `git push` to `upstream`.
 - **Parent:** [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)
 - **Last synced upstream tip:** <!-- upstream-tip-begin -->`356918eba965ee1eac64bd3a7f0dd02108350de5` (`356918e`, `docs: rename the Retriever logo files so GitHub serves the new version`)<!-- upstream-tip-end -->
 
-The weekday sync workflow rewrites only the `upstream-tip-begin/end` span when it opens a clean sync PR.
-
 ## Owners
 
 - **Jaskarn** (atebites-hub)
@@ -70,10 +68,6 @@ git push -u origin HEAD
 # Open PR title: chore: sync upstream
 # Merge with a merge commit.
 ```
-
-Weekday automation: `.github/workflows/sync-upstream.yml` (UTC cron, plus `workflow_dispatch`). If an open PR already has that exact title, the workflow leaves it alone.
-
-`GITHUB_TOKEN` pull requests do not start other workflows. Set repository secret `UPSTREAM_SYNC_TOKEN` (Factory Plugins bot PAT with `contents` + `pull-requests`) so sync PRs still run CI.
 
 ### After every sync
 
